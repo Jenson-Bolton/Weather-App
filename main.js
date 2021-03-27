@@ -5,7 +5,11 @@ var elementDescription = document.getElementById("description");
 var elementImage = document.getElementById("image")
 var elementLocation = document.getElementById("location");
 var elementTemp = document.getElementById("temp");
+var elementTitle = document.getElementById("title");
 var fetchURL;
+var isCreditsShowing = false;
+var testLat = 35.15548205564309;
+var testLong = 129.05662890144893;
 var userLat;
 var userLong;
 
@@ -14,9 +18,10 @@ function reqListener() {
     console.log(data);
     elementLocation.innerHTML = data.name;
     elementDescription.innerHTML = data.weather[0].description;
-    elementImage.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
     elementImage.alt = data.weather[0].description;
+    elementImage.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
     elementTemp.innerHTML = Math.round(data.main.temp);
+    elementTitle.innerHTML = data.weather[0].main + " - Weather";
 }
     
 function reqError(err) {
@@ -32,15 +37,8 @@ function getLocation() {
 }
 
 function showPosition(position) {
-    /*elementLocation.innerHTML = "Latitude: " + position.coords.latitude +
-    "<br>Longitude: " + position.coords.longitude;*/
     userLat = position.coords.latitude;
     userLong = position.coords.longitude;
-    /*fetchURL = "http://api.openweathermap.org/data/2.5/weather?lat=" + userLat + "&lon=" + userLong + "&appid=" + appid;
-    fetch(fetchURL)
-        .then(response => response.json())
-        .then(data => weatherData = data);
-    console.log(weatherData);*/
 
     fetchURL = "http://api.openweathermap.org/data/2.5/weather?lat=" + userLat + "&lon=" + userLong + "&units=metric&appid=" + appid;
       
@@ -51,9 +49,5 @@ function showPosition(position) {
     oReq.send();
 }
 
-function showRefresh() {
-    
-}
-
-getLocation();
-setTimeout(() => {  console.log("World!"); }, 30000);
+getLocation()
+setInterval(() => { getLocation(); }, 600000);
