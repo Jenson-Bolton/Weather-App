@@ -19,7 +19,7 @@ function reqListener() {
     console.log(data);
     elementLocation.innerHTML = data.name;
     elementDescription.innerHTML = data.weather[0].description;
-    elementIcon.href = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@4x.png";
+    elementIcon.href = "https://openweathermap.org/img/wn/" + data.weather[0].icon + ".png";
     elementImage.alt = data.weather[0].description;
     elementImage.src = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@4x.png";
     elementTemp.innerHTML = Math.round(data.main.temp);
