@@ -2,6 +2,7 @@ const appid = "0b2267613a2044aad5b45e8d8be085f4";
 
 var data;
 var elementDescription = document.getElementById("description");
+var elementIcon = document.getElementById("icon");
 var elementImage = document.getElementById("image")
 var elementLocation = document.getElementById("location");
 var elementTemp = document.getElementById("temp");
@@ -18,6 +19,7 @@ function reqListener() {
     console.log(data);
     elementLocation.innerHTML = data.name;
     elementDescription.innerHTML = data.weather[0].description;
+    elementIcon.href = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
     elementImage.alt = data.weather[0].description;
     elementImage.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
     elementTemp.innerHTML = Math.round(data.main.temp);
