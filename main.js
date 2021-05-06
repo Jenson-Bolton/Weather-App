@@ -1,4 +1,4 @@
-const appid = "0b2267613a2044aad5b45e8d8be085f4";
+const appid = "";
 
 var data;
 var elementDescription = document.getElementById("description");
